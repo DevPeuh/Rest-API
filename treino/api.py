@@ -1,6 +1,6 @@
 from typing import List
 from ninja import Router
-from .schemas import AlunosSchema
+from .schemas import AlunosSchema, ProgressoAlunoSchema
 from .models import Alunos
 from ninja.errors import HttpError
 
@@ -17,7 +17,11 @@ def criar_aluno(request, aluno_schema: AlunosSchema):
     aluno.save()
     return aluno
 
-@treino_router.get('/alunos/', response=List[AlunosSchema]) 
+@treino_router.get('/aluno/', response=List[AlunosSchema]) 
 def listar_alunos(request):
     alunos = Alunos.objects.all()
     return alunos
+
+@treino_router.get('/progresso_aluno', response={200: ProgressoAlunoSchema})
+def progresso_aluno(request, email_aluno: str):
+    aluno = Alunos.objects.filter(email= email_aluno)
