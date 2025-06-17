@@ -1,4 +1,5 @@
 # Validar os dados de entrada e saída da API
+from typing import Optional
 from ninja import ModelSchema, Schema
 from .models import Alunos
 
@@ -12,5 +13,10 @@ class ProgressoAlunoSchema(Schema):
     nome: str
     email: str
     faixa: str
-    aulas_concluidas: int
+    aulas_totais: int
     aulas_para_graduacao: int
+
+class AulasConcluidasSchema(ModelSchema):
+    quantidade: Optional[int] = 1
+    email_aluno: str
+    

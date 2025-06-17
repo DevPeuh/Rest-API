@@ -14,6 +14,7 @@ faixas_jiujitsu = [
     ]
 
 class Alunos(models.Model):
+    id = models.BigAutoField(primary_key=True, auto_created=True)
     nome = models.CharField(max_length=150)
     email = models.EmailField(unique=True)
     data_nascimento = models.DateField()
