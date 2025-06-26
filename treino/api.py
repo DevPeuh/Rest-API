@@ -1,6 +1,6 @@
 from typing import List
 from ninja import Router
-from .schemas import AlunosSchema, ProgressoAlunoSchema
+from .schemas import AlunosSchema, ProgressoAlunoSchema, AulasConcluidasSchema
 from .models import Alunos, AulasConcluidas
 from ninja.errors import HttpError
 from .graduacao import *
@@ -39,3 +39,17 @@ def progresso_aluno(request, email_aluno: str):
         'aulas_totais': aulas_concluidas,
         'aulas_para_graduacao': aulas_faltantes
     }
+
+
+@treino_router.post('/aulas_concluidas/', response={200: AulasConcluidasSchema})
+def aulas_concluidas(request, aula_realizada: AulasConcluidasSchema):
+    quantidade = aulas_concluidas.dict()['quantidade']
+    email_aluno = aulas_concluidas.dict()['email_aluno']
+
+    if quantidade < 1:
+        raise HttpError(400, 'Quantidade de aulas concluídas inválida.')
+    
+    for ac in range(quantidade):
+        aluno = Alunos.objects.get(email=email_aluno)
+        aulas_concluidas = AulasConcluidas(aluno=aluno, faixa_atual=aluno.faixa)
+        aulas_concluidas.save()

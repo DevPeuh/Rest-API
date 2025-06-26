@@ -17,6 +17,6 @@ class ProgressoAlunoSchema(Schema):
     aulas_para_graduacao: int
 
 class AulasConcluidasSchema(ModelSchema):
-    quantidade: Optional[int] = 1
+    quantidade: Optional[int] = 1 
     email_aluno: str
     
