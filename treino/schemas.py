@@ -7,7 +7,7 @@ from .models import Alunos
 class AlunosSchema(ModelSchema):
     class Meta:
         model = Alunos
-        fields = '__all__'
+        fields = ['nome', 'email', 'faixa', 'data_nascimento']
 
 class ProgressoAlunoSchema(Schema):
     nome: str
@@ -16,7 +16,7 @@ class ProgressoAlunoSchema(Schema):
     aulas_totais: int
     aulas_para_graduacao: int
 
-class AulasConcluidasSchema(ModelSchema):
+class AulasConcluidasSchema(Schema):
     quantidade: Optional[int] = 1 
     email_aluno: str
     

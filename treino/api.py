@@ -4,6 +4,7 @@ from .schemas import AlunosSchema, ProgressoAlunoSchema, AulasConcluidasSchema
 from .models import Alunos, AulasConcluidas
 from ninja.errors import HttpError
 from .graduacao import *
+from datetime import date
 
 
 treino_router = Router() # agrupar as rotas de treino
@@ -41,7 +42,7 @@ def progresso_aluno(request, email_aluno: str):
     }
 
 
-@treino_router.post('/aulas_concluidas/', response={200: AulasConcluidasSchema})
+@treino_router.post('/aulas_concluidas/', response={200: AulasConcluidasSchema}) 
 def aulas_concluidas(request, aula_realizada: AulasConcluidasSchema):
     quantidade = aulas_concluidas.dict()['quantidade']
     email_aluno = aulas_concluidas.dict()['email_aluno']
@@ -53,3 +54,15 @@ def aulas_concluidas(request, aula_realizada: AulasConcluidasSchema):
         aluno = Alunos.objects.get(email=email_aluno)
         aulas_concluidas = AulasConcluidas(aluno=aluno, faixa_atual=aluno.faixa)
         aulas_concluidas.save()
+
+    return 200, f'Aula concluída com sucesso. Total de aulas concluídas: {quantidade} - {aluno.nome}'
+
+@treino_router.put('/alunos/{aluno_id}/',)
+def atualizar_aluno(request, aluno_id: int, aluno_schema: AlunosSchema):
+    aluno = Alunos.objects.get(id=aluno_id)
+    if not aluno:
+        raise HttpError(404, 'ALuno não encontrado')
+    
+    idade = date.today() - aluno.data_nascimento
+    if int(idade.days/365) < 18 and aluno.data_nascimento.dict()['faixa'] in ['AZ', 'R', 'M', 'P']:
+        raise HttpError(400, 'Alunor menor de idade não pode ter faixa azul, roxa, marrom ou preta.')
