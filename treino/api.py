@@ -62,7 +62,6 @@ def atualizar_aluno(request, aluno_id: int, aluno_schema: AlunosSchema):
     aluno = Alunos.objects.get(id=aluno_id)
     if not aluno:
         raise HttpError(404, 'ALuno não encontrado')
-    
     idade = date.today() - aluno.data_nascimento
     if int(idade.days/365) < 18 and aluno_schema.dict()['faixa'] in ['AZ', 'R', 'M', 'P']: 
         raise HttpError(400, 'Alunor menor de idade não pode ter faixa azul, roxa, marrom ou preta.')
@@ -73,3 +72,5 @@ def atualizar_aluno(request, aluno_id: int, aluno_schema: AlunosSchema):
         
         aluno.save()
         return aluno
+    
+    
