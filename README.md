@@ -75,6 +75,5 @@ API REST para cadastro, atualização, listagem e acompanhamento de progresso de
 - Python
 - Django
 - Django Ninja
-- APIREST
 
 > Projeto desenvolvido para fins de estudo.
