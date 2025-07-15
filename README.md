@@ -1,4 +1,4 @@
-# Rest-API de Alunos
+# Rest-API Jiu-Jitsu
 
 API REST para cadastro, atualização, listagem e acompanhamento de progresso de alunos, desenvolvida com Django Ninja.
 
