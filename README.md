@@ -11,7 +11,6 @@ API REST para cadastro, atualização, listagem e acompanhamento de progresso de
 - Atualização dos dados do aluno com validação de faixa e idade
 
 ## Endpoints
-
 ### Criar Aluno
 
 - **POST** `/api/`
