@@ -7,7 +7,7 @@ from .graduacao import *
 from datetime import date
 
 
-treino_router = Router() # agrupar as rotas de treino
+treino_router = Router() # agrupa as rotas de treino
 
 @treino_router.post('', response={200: AlunosSchema}) 
 def criar_aluno(request, aluno_schema: AlunosSchema):
