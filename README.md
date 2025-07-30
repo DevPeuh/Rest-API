@@ -46,7 +46,7 @@ API REST para cadastro, atualização, listagem e acompanhamento de progresso de
   ```json
   {
     "quantidade": 2,
-    "email_aluno": "caio@email.com"
+    "email_aluno": "lucas@email.com"
   }
   ```
 - **Respostas:**
