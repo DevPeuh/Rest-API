@@ -17,9 +17,9 @@ API REST para cadastro, atualização, listagem e acompanhamento de progresso de
 - **Body (JSON):**
   ```json
   {
-    "nome": "caio",
-    "email": "caio@email.com",
-    "faixa": "B",
+    "nome": "lucas",
+    "email": "lucas@email.com",
+    "faixa": "AZ",
     "data_nascimento": "2025-02-14"
   }
   ```
@@ -35,7 +35,7 @@ API REST para cadastro, atualização, listagem e acompanhamento de progresso de
 
 ### Progresso do Aluno
 
-- **GET** `/api/progresso_aluno/?email_aluno=caio@email.com`
+- **GET** `/api/progresso_aluno/?email_aluno=lucas@email.com`
 - **Respostas:**
   - `200 OK`: Dados de progresso do aluno
 
